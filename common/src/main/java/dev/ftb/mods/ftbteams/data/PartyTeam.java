@@ -433,6 +433,25 @@ public class PartyTeam extends AbstractTeam {
 		return 1;
 	}
 
+	public int listWars(CommandSourceStack source) {
+		source.sendSuccess(() -> Component.literal("Wars:"), false);
+		boolean any = false;
+
+		for (UUID id : warWith) {
+			Team team = manager.getTeam(id);
+			if (team != null) {
+				source.sendSuccess(() -> team.getDisplayName(), false);
+				any = true;
+			}
+		}
+
+		if (!any) {
+			source.sendSuccess(() -> Component.literal("None"), false);
+		}
+
+		return 1;
+	}
+
 	public int forceDisband(CommandSourceStack from) throws CommandSyntaxException {
 		// kick all non-owner members
 		Set<UUID> members = new HashSet<>(getMembers());
