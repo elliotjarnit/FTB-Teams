@@ -372,6 +372,67 @@ public class PartyTeam extends AbstractTeam {
 		return 1;
 	}
 
+
+	public int declareWar(CommandSourceStack source, Team team) throws CommandSyntaxException {
+		if (source.getPlayer() != null && !FTBTUtils.canPlayerUseCommand(source.getPlayer(), "ftbteams.party.war")) {
+			throw TeamArgument.NO_PERMISSION.create();
+		}
+
+		if (team == this) {
+			throw TeamArgument.SAME_TEAM.create();
+		}
+
+		if (isAllyOrBetter(team.getId())) {
+			throw TeamArgument.CANT_WAR_ALLY.create();
+		}
+
+		warWith.add(team.getId());
+		team.warWith.add(getId());
+
+		markDirty();
+		manager.syncToAll(this);
+
+		team.markDirty();
+		manager.syncToAll(team);
+
+		sendMessage(source.getEntity() == null ? Util.NIL_UUID : source.getEntity().getUUID(),
+				Component.translatable("ftbteams.message.declared_war", team.getDisplayName()).withStyle(ChatFormatting.RED));
+
+		team.sendMessage(source.getEntity() == null ? Util.NIL_UUID : source.getEntity().getUUID(),
+				Component.translatable("ftbteams.message.war_declared", getDisplayName()).withStyle(ChatFormatting.RED));
+		return 1;
+	}
+
+	public int declarePeace(CommandSourceStack source, Team team) throws CommandSyntaxException {
+		if (source.getPlayer() != null && !FTBTUtils.canPlayerUseCommand(source.getPlayer(), "ftbteams.party.war")) {
+			throw TeamArgument.NO_PERMISSION.create();
+		}
+
+		if (team == this) {
+			throw TeamArgument.SAME_TEAM.create();
+		}
+
+		if (isAllyOrBetter(team.getId())) {
+			throw TeamArgument.CANT_WAR_ALLY.create();
+		}
+
+		warWith.remove(team.getId());
+		team.warWith.remove(getId());
+
+		markDirty();
+		manager.syncToAll(this);
+
+		team.markDirty();
+		manager.syncToAll(team);
+
+		sendMessage(source.getEntity() == null ? Util.NIL_UUID : source.getEntity().getUUID(),
+				Component.translatable("ftbteams.message.declared_peace", team.getDisplayName()).withStyle(ChatFormatting.GREEN));
+
+		team.sendMessage(source.getEntity() == null ? Util.NIL_UUID : source.getEntity().getUUID,
+				Component.translatable("ftbteams.message.peace_declared", getDisplayName()).withStyle(ChatFormatting.GREEN));
+		return 1;
+	}
+
 	public int forceDisband(CommandSourceStack from) throws CommandSyntaxException {
 		// kick all non-owner members
 		Set<UUID> members = new HashSet<>(getMembers());

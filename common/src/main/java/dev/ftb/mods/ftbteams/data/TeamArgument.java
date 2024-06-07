@@ -33,6 +33,8 @@ public class TeamArgument implements ArgumentType<TeamArgumentProvider> {
 	public static final DynamicCommandExceptionType PLAYER_IN_PARTY = new DynamicCommandExceptionType(object -> Component.translatable("ftbteams.player_already_in_party", object));
 	public static final SimpleCommandExceptionType NOT_IN_PARTY = new SimpleCommandExceptionType(Component.translatable("ftbteams.not_in_party"));
 	public static final DynamicCommandExceptionType TEAM_NOT_FOUND = new DynamicCommandExceptionType(object -> Component.translatable("ftbteams.team_not_found", object));
+	public static final DynamicCommandExceptionType SAME_TEAM = new DynamicCommandExceptionType(object -> Component.translatable("ftbteams.same_team", object));
+	public static final DynamicCommandExceptionType CANT_WAR_ALLY = new DynamicCommandExceptionType(object -> Component.translatable("ftbteams.cant_war_ally", object));
 	public static final DynamicCommandExceptionType CANT_EDIT = new DynamicCommandExceptionType(object -> Component.translatable("ftbteams.cant_edit", object));
 	public static final Dynamic2CommandExceptionType NOT_MEMBER = new Dynamic2CommandExceptionType((a, b) -> Component.translatable("ftbteams.not_member", a, b));
 	public static final Dynamic2CommandExceptionType NOT_OFFICER = new Dynamic2CommandExceptionType((a, b) -> Component.translatable("ftbteams.not_officer", a, b));

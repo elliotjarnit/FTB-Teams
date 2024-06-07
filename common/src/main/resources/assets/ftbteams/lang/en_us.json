@@ -3,6 +3,8 @@
 	"ftbteams.player_already_in_party": "Player '%s' is already in a party!",
 	"ftbteams.not_in_party": "You haven't created or joined a party!",
 	"ftbteams.team_not_found": "Team '%s' not found!",
+	"ftbteams.same_team": "You cannot do this to your own team!",
+	"ftbteams.cant_war_ally": "You can't declare war on an ally!",
 	"ftbteams.cant_edit": "You can't edit %s!",
 	"ftbteams.not_member": "%s is not a member of %s!",
 	"ftbteams.not_officer": "%s is not an officer of %s!",
@@ -86,6 +88,10 @@
 	"ftbteams.message.created_server_team": "Created new server team '%s'!",
 	"ftbteams.message.deleted_server_team": "Deleted server team '%s'!",
 	"ftbteams.message.team_disbanded": "Forcibly disbanded party team '%s' (%s) !",
+	"ftbteams.message.declared_war": "Declared war on %s!",
+	"ftbteams.message.war_declared": "%s has declared war on your team!",
+	"ftbteams.message.declared_peace": "Declared peace with %s!",
+	"ftbteams.message.peace_declared": "%s has declared peace with your team!",
 	"ftbteams.accept": "Accept ✔",
 	"ftbteams.decline": "Decline ✘"
 }
